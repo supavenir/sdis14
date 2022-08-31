@@ -7,6 +7,19 @@ public class Periode {
 
 	private List<Pompier> enMission;
 	private List<Pompier> disponible;
+
+	public List<Pompier> getEnMission() {
+		return enMission;
+	}
+
+	public List<Pompier> getDisponible() {
+		return disponible;
+	}
+
+	public List<Pompier> getAuTravail() {
+		return auTravail;
+	}
+
 	private List<Pompier> auTravail;
 
 	public Periode() {

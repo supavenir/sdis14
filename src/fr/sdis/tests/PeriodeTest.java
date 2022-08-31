@@ -1,7 +1,8 @@
 package fr.sdis.tests;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,12 +33,29 @@ class PeriodeTest {
 
 	@Test
 	void testMissionner() {
-		fail("Not yet implemented");
+		Pompier p = new Pompier("jp D");
+		assertFalse(periode.getEnMission().contains(p));
+		periode.missionner(p);
+		assertTrue(periode.getEnMission().contains(p));
+		assertEquals('m', p.getStatut(periode));
+		assertFalse(periode.getEnMission().contains(new Pompier("Martin")));
 	}
 
 	@Test
 	void testSelectEquipe() {
-		fail("Not yet implemented");
+		assertEquals(0, periode.selectEquipe(1).size());
+		assertEquals(0, periode.selectEquipe(10).size());
+		assertEquals(0, periode.selectEquipe(0).size());
+		Pompier p = new Pompier("jp M");
+		periode.affecter(p, 'm');
+		assertEquals(0, periode.selectEquipe(1).size());
+		periode.affecter(p, 't');
+		assertEquals(1, periode.selectEquipe(1).size());
+		Pompier p2 = new Pompier("jp X");
+		periode.affecter(p2, 'd');
+		assertEquals(1, periode.selectEquipe(1).size());
+		assertEquals(2, periode.selectEquipe(2).size());
+		assertEquals(2, periode.selectEquipe(3).size());
 	}
 
 }
